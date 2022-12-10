@@ -332,6 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 6
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 1321405106}
   - {fileID: 1987816279}
@@ -584,6 +586,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 1
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 357391244}
   - {fileID: 1660297004}
@@ -934,6 +938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 4
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 427713562}
   - {fileID: 2138769330}
@@ -1186,6 +1192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 990025238}
   - {fileID: 1631629811}
@@ -1755,6 +1763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528974356}
   - component: {fileID: 528974357}
+  - component: {fileID: 528974358}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1792,16 +1801,32 @@ MonoBehaviour:
   plusOneBtn: {fileID: 564242705}
   nextLvBtn: {fileID: 190863824}
   redoBtn: {fileID: 1578131142}
-  RightCages:
+  currentLv: 0
+  AllCages:
   - {fileID: 155509412}
   - {fileID: 1186330152}
   - {fileID: 1252901550}
   - {fileID: 709191789}
-  LeftCages:
   - {fileID: 347847101}
   - {fileID: 648826061}
   - {fileID: 312567632}
   - {fileID: 144560074}
+  Levels:
+  - {fileID: 11400000, guid: 42b1fe5dc202b794ca88954a4e7cc416, type: 2}
+  numberOfCages: 0
+--- !u!114 &528974358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528974354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c9027f04d96ea488f837a88b3470e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerAction: []
 --- !u!1 &564242703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,9 +1911,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 528974357}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: PlusOne
+        m_MethodName: plusOneBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2069,6 +2094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 2
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 935979942}
   - {fileID: 785080870}
@@ -2379,6 +2406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 7
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 980994510}
   - {fileID: 1501316965}
@@ -3435,6 +3464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 3
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 2111861592}
   - {fileID: 1509716585}
@@ -3669,6 +3700,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 5
+  SendFrom: 0
+  cageData: 
   ChildList:
   - {fileID: 995101864}
   - {fileID: 978795961}

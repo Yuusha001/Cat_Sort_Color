@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf07a4cd8887329479ac095456ca46c7, type: 3}
   m_Name: Level 0
   m_EditorClassIdentifier: 
-  numberOfcages: 0
+  numberOfCages: 3
   gameDatas:
-  - type: 00000000000000000100000001000000
-  - type: 01000000010000000000000000000000
+  - Type: 00000000000000000100000001000000
+  - Type: 0000000000000000
+  - Type: 0100000001000000
