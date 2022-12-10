@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CageController : MonoBehaviour
 {
@@ -36,6 +37,26 @@ public class CageController : MonoBehaviour
 
     // Update is called once per frame
     void Update() { }
+
+    public void LoadImage()
+    {
+        foreach (var item in ChildList)
+        {
+            item.GetComponent<Image>().sprite = null;
+            item.GetComponent<Image>().enabled = false;
+        }
+        if (CageData.Count > 0)
+        {
+            for (var i = 0; i < CageData.Count; i++)
+            {
+                var link = "Textures/" + CageData[i];
+                var img = Resources.Load<Sprite>(link);
+                var childIMG = ChildList[i].transform.GetComponent<Image>();
+                childIMG.sprite = img;
+                childIMG.enabled = true;
+            }
+        }
+    }
 
     private void OnEnable()
     {
@@ -132,10 +153,10 @@ public class CageController : MonoBehaviour
 
     void SendProgressing(int prev, int next)
     {
-        CageController nextCage = GameManager.instance.getCagebyID(next);
-        CageController prevCage = GameManager.instance.getCagebyID(prev);
-        var prevCageData = prevCage.cageData;
-        var nextCageData = nextCage.cageData;
+        GameManager.instance.nextCage = GameManager.instance.getCagebyID(next);
+        GameManager.instance.prevCage = GameManager.instance.getCagebyID(prev);
+        var prevCageData = GameManager.instance.prevCage.cageData;
+        var nextCageData = GameManager.instance.nextCage.cageData;
         Debug.Log("Prev : " + prevCageData.Count);
         Debug.Log("Next : " + nextCageData.Count);
 
@@ -145,7 +166,9 @@ public class CageController : MonoBehaviour
             Debug.Log(SendFrom + " to " + this.cageID);
             Debug.Log("Send : " + totalMove);
             SendData(prevCageData, nextCageData, totalMove);
-            var nextCageAction = nextCage.PlayerAction();
+            GameManager.instance.prevCage.LoadImage();
+            GameManager.instance.nextCage.LoadImage();
+            var nextCageAction = GameManager.instance.nextCage.PlayerAction();
             Steps.instance.AddList(
                 prev,
                 next,
@@ -154,7 +177,12 @@ public class CageController : MonoBehaviour
                 totalMove
             );
             if (nextCageAction == ProgressingAction.Matching)
+            {
                 cageData.Clear();
+                GameManager.instance.prevCage.LoadImage();
+                GameManager.instance.nextCage.LoadImage();
+                Debug.Log("Matching");
+            }
         }
         else
         {
@@ -172,6 +200,7 @@ public class CageController : MonoBehaviour
         {
             SendProgressing(SendFrom, this.cageID);
             Actions.CompleteSending();
+            GameManager.instance.StageComplete();
         }
         else if (!reciver && sender)
         {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Level : ScriptableObject
 {
     public int numberOfCages;
+    public string levelName = "";
 
     public List<gameData> gameDatas;
 }
@@ -18,8 +19,11 @@ public class gameData
 
 public enum Cats
 {
-    Cat0,
-    Cat1,
-    Cat2,
-    Cat3
+    Cat_0,
+    Cat_1,
+    Cat_2,
+    Cat_3,
+    Cat_4,
+    Cat_5,
+    Cat_6
 }

@@ -755,9 +755,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 528974357}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LevelUP
+        m_MethodName: LoadNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1326,7 +1326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1382441878, guid: 63b1746b4bb88ee4ebf81ef8ac8e732f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1801,6 +1801,7 @@ MonoBehaviour:
   plusOneBtn: {fileID: 564242705}
   nextLvBtn: {fileID: 190863824}
   redoBtn: {fileID: 1578131142}
+  levelTxt: {fileID: 383837312}
   currentLv: 0
   AllCages:
   - {fileID: 155509412}
@@ -1813,7 +1814,10 @@ MonoBehaviour:
   - {fileID: 144560074}
   Levels:
   - {fileID: 11400000, guid: 42b1fe5dc202b794ca88954a4e7cc416, type: 2}
+  - {fileID: 11400000, guid: 27a1a75579355b74998cf1dd48f44015, type: 2}
   numberOfCages: 0
+  nextCage: {fileID: 0}
+  prevCage: {fileID: 0}
 --- !u!114 &528974358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4352,7 +4356,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 528974357}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RollBackBtn
         m_Mode: 1
