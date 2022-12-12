@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TMP_Text levelTxt;
 
+    [SerializeField]
+    GameObject shopBtn,
+        PopupShop;
+
     [Header("Gameplay Elements")]
     [SerializeField]
     int currentLv;
@@ -204,6 +208,11 @@ public class GameManager : MonoBehaviour
 
         //Remove Action
         Steps.instance.RemoveList();
+    }
+
+    public void OpenShop(bool value)
+    {
+        PopupShop.SetActive(value);
     }
 }
 
