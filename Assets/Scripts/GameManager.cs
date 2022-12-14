@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using Newtonsoft.Json;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay Elements")]
     [SerializeField]
     int currentLv;
+
+    [SerializeField]
+    PlayerData playerData { get; set; }
 
     [SerializeField]
     List<CageController> AllCages;
@@ -60,12 +64,55 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadPlayerDatas();
+
         SetUpStage(currentLv);
     }
 
     // Update is called once per frame
     void Update() { }
 
+    public CageController getCagebyID(int ID)
+    {
+        foreach (var item in AllCages)
+        {
+            if (item.cageID == ID)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+
+#region PlayerData
+    void LoadPlayerDatas()
+    {
+        var playerDataTxt = PlayerPrefs.GetString("PlayerData");
+        if (string.IsNullOrEmpty(playerDataTxt))
+        {
+            this.playerData = new PlayerData();
+            this.playerData.currentLevel = 0;
+            this.playerData.UnlockedCharactors = new Dictionary<Cats, bool>();
+            this.playerData.UnlockedSpaceLifts = new Dictionary<SpaceLifts, bool>();
+        }
+        else
+        {
+            this.playerData = JsonConvert.DeserializeObject<PlayerData>(playerDataTxt);
+            currentLv = this.playerData.currentLevel;
+        }
+    }
+
+    public void SavePlayerDatas()
+    {
+        //Set level up
+        playerData.currentLevel = currentLv;
+        var PlayerDataTxt = JsonConvert.SerializeObject(playerData);
+        PlayerPrefs.SetString("PlayerData", PlayerDataTxt);
+    }
+
+#endregion
+
+#region Gameplay
     void SetUpStage(int Lv)
     {
         this.numberOfCages = Levels[Lv].numberOfCages;
@@ -131,6 +178,7 @@ public class GameManager : MonoBehaviour
         }
         SetUpStage(Lv);
         currentLv = Lv;
+        SavePlayerDatas();
     }
 
     public void plusOneBtnClick()
@@ -141,18 +189,6 @@ public class GameManager : MonoBehaviour
             if (item.cageID == numberOfCages)
                 item.gameObject.SetActive(true);
         }
-    }
-
-    public CageController getCagebyID(int ID)
-    {
-        foreach (var item in AllCages)
-        {
-            if (item.cageID == ID)
-            {
-                return item;
-            }
-        }
-        return null;
     }
 
     public void RollBackBtn()
@@ -194,16 +230,11 @@ public class GameManager : MonoBehaviour
             i++
         )
         {
-            //Switch Parent
-            // nextCageData[nextCageData.Count - 1] = Cages[LastIndex_Prev].transform;
-
             //Swich Position
             prevCageData.Add(nextCageData[nextCageData.Count - 1]);
 
             //Remove Last
             nextCageData.RemoveAt(nextCageData.Count - 1);
-
-            //Set Position
         }
 
         //Remove Action
@@ -214,6 +245,7 @@ public class GameManager : MonoBehaviour
     {
         PopupShop.SetActive(value);
     }
+    #endregion
 }
 
 public enum GameState

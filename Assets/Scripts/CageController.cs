@@ -49,10 +49,8 @@ public class CageController : MonoBehaviour
         {
             for (var i = 0; i < CageData.Count; i++)
             {
-                var link = "Textures/" + CageData[i];
-                var img = Resources.Load<Sprite>(link);
                 var childIMG = ChildList[i].transform.GetComponent<Image>();
-                childIMG.sprite = img;
+                childIMG.sprite = ConfigManager.instance.LoadCatsImagebyCodeName(CageData[i]);
                 childIMG.enabled = true;
             }
         }

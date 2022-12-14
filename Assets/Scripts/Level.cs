@@ -27,3 +27,9 @@ public enum Cats
     Cat_5,
     Cat_6
 }
+
+public enum SpaceLifts
+{
+    UFO,
+    ROCKET
+}
