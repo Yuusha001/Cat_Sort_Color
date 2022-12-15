@@ -190,6 +190,13 @@ public class GameManager : MonoBehaviour
         SavePlayerDatas();
     }
 
+    public void ReloadLevel()
+    {
+        CleanUp();
+        SetUpStage(currentLv);
+        SavePlayerDatas();
+    }
+
     public void plusOneBtnClick()
     {
         plusOneBtn.gameObject.SetActive(false);

@@ -22,6 +22,10 @@ public class DynamicScrollViews : MonoBehaviour
         ShipLockedItemList;
 
     [SerializeField]
+    TMPro.TMP_Text unlockedTxt,
+        lockedTxt;
+
+    [SerializeField]
     bool buyCats,
         buyShips,
         buyHQs,
@@ -48,6 +52,8 @@ public class DynamicScrollViews : MonoBehaviour
         buyBGs = buyHQs = buyShips = false;
         if (buyCats)
             return;
+        unlockedTxt.text = "My Cats";
+        lockedTxt.text = "New Cats";
         ObjPooling.SharedInstance.DisableListItems("UnlockedItem");
         ObjPooling.SharedInstance.DisableListItems("LockedItem");
         CatUnlockedItemList.Clear();
@@ -73,6 +79,8 @@ public class DynamicScrollViews : MonoBehaviour
         buyBGs = buyHQs = buyCats = false;
         if (buyShips)
             return;
+        unlockedTxt.text = "My Spacelifts";
+        lockedTxt.text = "New Spacelifts";
         ObjPooling.SharedInstance.DisableListItems("UnlockedItem");
         ObjPooling.SharedInstance.DisableListItems("LockedItem");
         ShipUnlockedItemList.Clear();
