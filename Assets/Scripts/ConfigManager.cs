@@ -14,9 +14,15 @@ public class ConfigManager : MonoBehaviour
 
     public Sprite LoadCatsImagebyCodeName(Cats codeName)
     {
-        var link = "Textures/" + codeName;
+        var link = "Textures/Cats/" + codeName;
         var img = Resources.Load<Sprite>(link);
         return img;
     }
-    
+
+    public Sprite LoadShipsImagebyCodeName(SpaceLifts codeName)
+    {
+        var link = "Textures/SpaceLifts/" + codeName;
+        var img = Resources.Load<Sprite>(link);
+        return img;
+    }
 }

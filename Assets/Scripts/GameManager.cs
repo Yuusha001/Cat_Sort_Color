@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     int currentLv;
 
     [SerializeField]
-    PlayerData playerData { get; set; }
+    public PlayerData playerData { get; set; }
 
     [SerializeField]
     List<CageController> AllCages;
@@ -92,7 +92,16 @@ public class GameManager : MonoBehaviour
         {
             this.playerData = new PlayerData();
             this.playerData.currentLevel = 0;
-            this.playerData.UnlockedCharactors = new Dictionary<Cats, bool>();
+            this.playerData.UnlockedCharactors = new Dictionary<Cats, bool>()
+            {
+                { Cats.Cat_0, true },
+                { Cats.Cat_1, true },
+                { Cats.Cat_2, true },
+                { Cats.Cat_3, true },
+                { Cats.Cat_4, false },
+                { Cats.Cat_5, false },
+                { Cats.Cat_6, false },
+            };
             this.playerData.UnlockedSpaceLifts = new Dictionary<SpaceLifts, bool>();
         }
         else
